@@ -1,5 +1,5 @@
 import pygame
-
+import pygame.font
 
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 from dino_runner.components.dinosaur import Dinosaur
@@ -22,7 +22,7 @@ class Game:
         self.game_speed = 20
         # localização
         self.x_pos_bg = 0
-        self.y_pos_bg = 380
+        self.y_pos_bg = 0
 
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
@@ -86,6 +86,7 @@ class Game:
         pygame.display.flip()
 
     def draw_background(self):
+        self.screen.fill((0, 0, 0, 255))
         image_width = BG.get_width()
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
         self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
@@ -126,23 +127,26 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 self.run()
 
+    # menu inicial do jogo
     def show_menu(self):
-        self.screen.fill((255, 255, 255))
+        self.screen.fill((235, 156, 243))
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
         if self.death_count == 0:
-            draw_message_component("Pressione qualquer tecla pra iniciar o jogo.", self.screen)
+            draw_message_component("Pressione qualquer tecla pra iniciar o jogo.", self.screen, font_color=(255, 255, 255))
         else:
-            draw_message_component("Pressione qualquer tecla para reiniciar o jogo.", self.screen, pos_y_center = half_screen_height + 140)
+            draw_message_component("Pressione qualquer tecla para reiniciar o jogo.", self.screen, font_color=(255, 255, 255), pos_y_center = half_screen_height + 140)
             draw_message_component(
                 f"Sua pontuação: {self.score}",
                 self.screen,
-                pos_x_center=half_screen_height - 150
+                font_color=(255, 255, 255),
+                pos_y_center=half_screen_height - 180
             )
 
             draw_message_component(
-                f"Contagem de vida: {self.death_count}",
-                self.screen, 
+                f"Tentativas: {self.death_count}",
+                self.screen,
+                font_color=(255, 255, 255),
                 pos_y_center=half_screen_height - 100
                 )
             self.screen.blit(ICON, (half_screen_width - 40, half_screen_height - 30))
