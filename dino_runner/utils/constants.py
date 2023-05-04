@@ -4,7 +4,7 @@ import os
 # constantes globais contendo o título, tamanho de tela e imagens
 TITLE = "Zomgirl Escape"
 SCREEN_HEIGHT = 450
-SCREEN_WIDTH = 600
+SCREEN_WIDTH = 650
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
@@ -49,14 +49,14 @@ DUCKING_HAMMER = [
 
 # carregando imagem dos obstáculos do jogo
 SMALL_CACTUS = [
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/bitey1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/bitey2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/bitey1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Cactus/zumbi3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Cactus/zumbi3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Cactus/zumbi3.png")),
 ]
 LARGE_CACTUS = [
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Cactus/zumbi1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Cactus/zumbi2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Cactus/zumbi1.png")),
 ]
 
 BIRD = [
@@ -66,12 +66,14 @@ BIRD = [
 
 # imagens do cenário do jogo
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Cenário/Cloud.png'))
-SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Cenário/shield.png'))
+SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Cenário/espada.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Cenário/hammer.png'))
 
 # alterando o tamanho da imagem da variável BG
+# tam = (650, 400)
 tam = (650, 400)
 BG = pygame.transform.scale(pygame.image.load(os.path.join(IMG_DIR, 'Cenário/fundo.png')), tam)
+
 # carrega a imagem do coração
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Cenário/SmallHeart.png'))
 

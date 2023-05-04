@@ -20,7 +20,8 @@ class Game:
         # pontuação
         self.score = 0
         self.death_count = 0
-        self.game_speed = 20
+        # velocidade do jogo
+        self.game_speed = 1
         # localização
         self.x_pos_bg = 0
         self.y_pos_bg = 0
@@ -28,6 +29,8 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.power_up_manager = PowerUpManager()
+        # música do jogo
+        pygame.mixer.music.load('C:/Users/faanj/OneDrive/Área de Trabalho/jogoTeste/dino_runner/assets/Music/dreams.mp3')
 
 # método que inicializa o jogo e seu loop inicial
     def execute(self):
@@ -46,8 +49,9 @@ class Game:
         self.obstacle_manager.reset_obstacles()
         self.power_up_manager.reset_power_ups()
         # inicia a velocidade e a pontuação
-        self.game_speed = 20
+        self.game_speed = 15
         self.score = 0
+        pygame.mixer.music.play(-1)
         # jogo rodando
         while self.playing:
             # atualiza o estado do jogo
@@ -82,14 +86,14 @@ class Game:
         self.score += 1
         # a cada 100 pontos a velocidade aumenta em 2
         if self.score % 100 == 0:
-            self.game_speed += 2
+            self.game_speed += 1
 
     # método que desenha os elementos na tela
     def draw(self):
         # controla a velocidade a partir do FPS
         self.clock.tick(FPS)
         # cor da tela
-        self.screen.fill((255, 255, 255))
+        self.screen.fill((100, 70, 40))
         # fundo do jogo
         self.draw_background()
         # exibe o personagem jogador
@@ -109,15 +113,13 @@ class Game:
     
     # método que desenha o fundo do jogo
     def draw_background(self):
-        self.screen.fill((0, 0, 0, 255))
         image_width = BG.get_width()
-        # efeito de movimento no fundo do jogo
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
         self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+        self.x_pos_bg -= self.game_speed
         if self.x_pos_bg <= -image_width:
-            self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
-            self.x_pos_bg -= self.game_speed
+            self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
     
     # método que exibe a mensagem de pontuação no fim do jogo
     def draw_score(self):
