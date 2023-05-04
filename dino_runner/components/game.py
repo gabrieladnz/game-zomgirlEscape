@@ -1,5 +1,6 @@
 import pygame
 
+
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
@@ -9,7 +10,7 @@ from dino_runner.components.powerups.power_up_manager import PowerUpManager
 class Game:
     def __init__(self):
         pygame.init()
-        pygame.display().set_caption(TITLE)
+        pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
@@ -17,7 +18,6 @@ class Game:
         self.running = False
         # pontuação
         self.score = 0
-        self.death_count = 0
         self.death_count = 0
         self.game_speed = 20
         # localização
@@ -65,11 +65,11 @@ class Game:
         self.player.update(user_input)
         self.obstacle_manager.update(self)
         self.update_score()
-        self.power_up_manager(self.score, self.game_speed, self.player)
+        self.power_up_manager.update(self.score, self.game_speed, self.player)
 
     def update_score(self):
         self.score += 1
-        if self.score %  100== 0:
+        if self.score % 100 == 0:
             self.game_speed += 5
 
     def draw(self):
@@ -89,7 +89,7 @@ class Game:
         image_width = BG.get_width()
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
         self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
-        if self.x_pos_bg <= - image_width:
+        if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
             self.x_pos_bg -= self.game_speed
@@ -98,8 +98,8 @@ class Game:
         draw_message_component(
             f"pontos: {self.score}",
             self.screen,
-            pos_x_center= 1000,
-            pos_y_center= 50
+            pos_x_center = 1000,
+            pos_y_center = 50
         )
 
     def draw_power_up_time(self):
@@ -133,7 +133,7 @@ class Game:
         if self.death_count == 0:
             draw_message_component("Pressione qualquer tecla pra iniciar o jogo.", self.screen)
         else:
-            draw_message_component("Pressione qualquer tecla para reiniciar o jogo.", self.screen, pos_y_center= half_screen_height + 140)
+            draw_message_component("Pressione qualquer tecla para reiniciar o jogo.", self.screen, pos_y_center = half_screen_height + 140)
             draw_message_component(
                 f"Sua pontuação: {self.score}",
                 self.screen,
@@ -148,4 +148,4 @@ class Game:
             self.screen.blit(ICON, (half_screen_width - 40, half_screen_height - 30))
         
         pygame.display.flip()
-        self.handle_events_on_menu
+        self.handle_events_on_menu()
