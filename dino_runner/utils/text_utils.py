@@ -14,7 +14,9 @@ def draw_message_component(
     screen,
     font_color=FONT_COLOR,
     font_size=FONT_SIZE,
+    # coordenada vertical e mantém no centro da tela
     pos_y_center=SCREEN_HEIGHT // 2,
+    # coordenada horizontal
     pos_x_center=SCREEN_WIDTH // 2
 ):
     font = pygame.font.Font(FONT_STYLE, font_size)
