@@ -7,7 +7,6 @@ from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE,
 DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
 JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD}
 RUN_IMG = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD}
-
 # posição horizontal inicial do personagem
 X_POS = 80
 # posição vertical inicial do personagem
